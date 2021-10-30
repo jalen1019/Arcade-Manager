@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="Arcade_Manager.Views.LibraryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:Arcade_Manager.ViewModels"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Button Grid.Row="0" x:Name="Browse_Button" ClickMode="Press" Content="Browse" Click="Browse_Button_Click" VerticalAlignment="Top" Margin="{StaticResource MediumBottomMargin}"/>
+        
+        <TreeView Grid.Row="1" SelectionMode="Multiple" Height="Auto" AllowDrop="False" CanDrag="False" CanDragItems="False" ItemsSource="{x:Bind ViewModel.DataSource}" x:Name="Rom_TreeView">
+            <TreeView.ItemTemplate>
+                <DataTemplate x:DataType="local:Rom">
+                    <TreeViewItem ItemsSource="{x:Bind Children}" Content="{x:Bind Name}"/>
+                </DataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        
+        <Button Grid.Row="2" Content="Done" HorizontalAlignment="Right" Margin="{StaticResource MediumBottomMargin}" Click="Done_Button_Click"/>
+    </Grid>
+</Page>
